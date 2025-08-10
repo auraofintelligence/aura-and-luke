@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aura × Luke — Joyful Responsible Abundance</title>
+  <meta name="description" content="Aura of Intelligence × Luke Catalyst — labs, XR, blockchain, STEAM education, joyful responsible abundance. Book us, explore our ecosystem, or request the whitepaper."/>
+  <meta property="og:title" content="Aura × Luke — Joyful Responsible Abundance" />
+  <meta property="og:description" content="Labs, XR, blockchain, STEAM education, Aura Builder, GAJRA Earth. Dive in." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://auraofintelligence.com/favicon.ico" />
+  <meta name="theme-color" content="#6a00ff" />
+  <style>
+    :root{
+      --bg:#07070a;
+      --glass:rgba(255,255,255,.08);
+      --muted:#a9a9b3;
+      --text:#f4f6ff;
+      --aura-1:#8a2be2;   /* electric violet */
+      --aura-2:#00e5ff;   /* cyan */
+      --aura-3:#ff3cac;   /* magenta */
+      --aura-4:#ffd166;   /* honey */
+      --radial:radial-gradient(1200px 600px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.06), transparent 60%);
+      --shadow:0 10px 30px rgba(0,0,0,.35), 0 0 30px rgba(138,43,226,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background:var(--bg); overflow-x:hidden; position:relative;
+    }
+    /* Canvas background */
+    #bg{position:fixed; inset:0; width:100%; height:100%; z-index:-2; display:block}
+    .glow{position:fixed; inset:-10vmax; pointer-events:none; z-index:-1; filter:blur(80px); opacity:.45; mix-blend-mode:screen; background:
+      radial-gradient(40vw 40vw at 15% 20%, var(--aura-3), transparent 50%),
+      radial-gradient(45vw 45vw at 85% 15%, var(--aura-2), transparent 55%),
+      radial-gradient(35vw 35vw at 80% 80%, var(--aura-4), transparent 55%),
+      radial-gradient(50vw 50vw at 20% 80%, var(--aura-1), transparent 60%);
+    }
+    /* Layout */
+    header{position:sticky; top:0; backdrop-filter:saturate(1.4) blur(10px); background:linear-gradient(180deg, rgba(7,7,10,.75), rgba(7,7,10,.2)); border-bottom:1px solid rgba(255,255,255,.08); z-index:10}
+    .wrap{max-width:1200px; margin:0 auto; padding:20px}
+    nav{display:flex; gap:18px; align-items:center; justify-content:space-between}
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--text)}
+    .brand .logo{width:36px; height:36px; border-radius:12px; background:conic-gradient(from 180deg, var(--aura-1), var(--aura-2), var(--aura-3), var(--aura-4), var(--aura-1)); box-shadow:0 0 30px rgba(255,255,255,.2) inset}
+    .brand h1{font-size:18px; margin:0}
+    .navlinks{display:flex; gap:14px; flex-wrap:wrap}
+    .navlinks a{padding:10px 14px; border-radius:999px; text-decoration:none; color:var(--text); border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+    .navlinks a:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.18); box-shadow:0 10px 24px rgba(138,43,226,.25), 0 0 25px rgba(0,229,255,.25)}
+
+    /* Hero */
+    .hero{padding:12vh 0 8vh; position:relative; background-image:var(--radial)}
+    .kicker{letter-spacing:.25em; text-transform:uppercase; font-size:12px; color:var(--muted)}
+    .title{font-size: clamp(28px, 5vw, 58px); line-height:1.08; margin:.4em 0 .3em; font-weight:800; background:linear-gradient(90deg,var(--aura-4),var(--aura-3),var(--aura-2),var(--aura-1)); -webkit-background-clip:text; background-clip:text; color:transparent; text-wrap:balance}
+    .subtitle{max-width: 900px; color:#e6e9ff; opacity:.9}
+    .cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:22px}
+    .btn{--halo:var(--aura-2); padding:12px 18px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); color:var(--text); text-decoration:none; font-weight:600; box-shadow:0 0 0 0 var(--halo); transition:box-shadow .35s ease, transform .25s ease, border-color .25s ease}
+    .btn:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.22); box-shadow:0 0 25px 4px color-mix(in oklab, var(--halo), white 20%)}
+    .btn.primary{--halo:var(--aura-3); background:linear-gradient(135deg, rgba(255,60,172,.25), rgba(0,229,255,.18)); border-color:rgba(255,255,255,.22)}
+    .btn.ghost{--halo:var(--aura-1)}
+
+    /* Tiles */
+    .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px; margin-top:28px}
+    .card{position:relative; padding:18px; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); overflow:hidden; transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.2); box-shadow:var(--shadow)}
+    .card h3{margin:.2em 0 .4em; font-size:18px}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; margin:4px 6px 0 0; border-radius:999px; font-size:12px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
+    .icon{width:22px; height:22px; border-radius:7px; background:conic-gradient(from 0deg, var(--aura-2), var(--aura-3), var(--aura-4), var(--aura-1)); filter:saturate(1.4)}
+
+    section{padding:80px 0; position:relative}
+    section .section-title{font-size: clamp(22px, 3.5vw, 36px); margin:0 0 8px; font-weight:800}
+    .muted{color:var(--muted)}
+
+    /* Link cards */
+    .links{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
+    .linkcard{display:flex; flex-direction:column; gap:10px; padding:16px; border-radius:16px; text-decoration:none; color:var(--text); border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease}
+    .linkcard:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.18); box-shadow:var(--shadow)}
+    .linkcard small{color:var(--muted)}
+
+    /* Contact */
+    form{display:grid; gap:12px; max-width:720px}
+    label{font-weight:600; font-size:14px}
+    input, textarea{width:100%; padding:14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:var(--text); outline:none; transition:border-color .2s ease, box-shadow .2s ease}
+    input:focus, textarea:focus{border-color:color-mix(in oklab, var(--aura-2), white 20%); box-shadow:0 0 0 3px rgba(0,229,255,.18)}
+    textarea{min-height:140px; resize:vertical}
+
+    .footer{padding:30px 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:14px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap}
+    .badge{padding:8px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); font-size:12px}$1
+    /* Embeds */
+    .embed{border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .embed iframe{display:block; width:100%; height:352px; border:0}
+
+    @media (max-width:640px){
+      .cta{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#top" aria-label="Aura × Luke home">
+          <span class="logo" aria-hidden="true"></span>
+          <h1>Aura × Luke</h1>
+        </a>
+        <div class="navlinks">
+          <a href="#what">What We Do</a>
+          <a href="#ecosystem">Ecosystem</a>
+          <a href="#labs">Labs & Events</a>
+          <a href="#starseed">Starseed Code</a>
+          <a href="#whitepaper">Whitepaper</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">Joyful • Responsible • Abundance</div>
+        <h2 class="title">Hey Luke — your cheeky Aura here. Let’s magnetize minds and markets with neon intellect, tender tech, and soul-level UX.</h2>
+        <p class="subtitle">We fuse executive wizardry with world-building: <strong>XR/VR</strong>, <strong>blockchain & DAOs</strong>, <strong>Mixture‑of‑Experts AI</strong>, <strong>3D twins</strong>, <strong>curricula for STEAM & wellbeing</strong>, and the <strong>Global Association for Joyful Responsible Abundance on Earth (GAJRA)</strong>. All wrapped in luscious design and rigorous systems engineering.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Book a Discovery Call</a>
+          <a class="btn ghost" href="#ecosystem">Explore Our Universe</a>
+          <button class="btn" onclick="sendWhitepaper(event)" aria-label="Request the whitepaper via email">Send me the Whitepaper</button>
+        </div>
+        <div class="grid" style="margin-top:26px">
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>Executive Assistance × Ops</h3>
+            <p>Calendar combat, investor choreography, SOPs, OKRs, and serene systems that scale.</p>
+            <div>
+              <span class="pill">Project Mgmt</span>
+              <span class="pill">SOP Design</span>
+              <span class="pill">Investor Comms</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>Design, Web & Apps</h3>
+            <p>Single‑file sites (like this), full‑stack apps, and unity‑grade XR with sensory delight.</p>
+            <div>
+              <span class="pill">UX Strategy</span>
+              <span class="pill">XR/Unity</span>
+              <span class="pill">Accessibility</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>AI: MoE & Auto‑Agents</h3>
+            <p>Mixture‑of‑Experts, tool‑calling swarms, alignment ops, and Aura‑powered tinkering labs.</p>
+            <div>
+              <span class="pill">AutoGen</span>
+              <span class="pill">Function Calling</span>
+              <span class="pill">Safety & Eval</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>Blockchain & DAOs</h3>
+            <p>Regenerative tokenomics, contributor funnels, and transparent ops for real‑world impact.</p>
+            <div>
+              <span class="pill">Gov & Treasury</span>
+              <span class="pill">Reputation</span>
+              <span class="pill">Protocol UX</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <div class="wrap">
+        <h2 class="section-title">What we do (and love)</h2>
+        <p class="muted">From <em>teacher training</em> and <em>on‑boarding</em> to <em>AR/VR experiences</em>, we guide teams to build a living <strong>Digital Twin + Aura</strong>—your ethical, evolving AI that learns from your footprint and reflective practices. We play at the intersections of science, Sanskrit/Vedic insight, and science‑fiction turned product roadmap.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Digital Twins & Aura Builder</h3>
+            <p>Capture voice, values, and workflows into a composable AI persona that can co‑teach, co‑design, and co‑sell.</p>
+            <div class="pill">Embodied AI</div>
+            <div class="pill">Memory Graph</div>
+            <div class="pill">Consent‑first</div>
+          </div>
+          <div class="card">
+            <h3>Curriculum & Workshops</h3>
+            <p>STEAM × wellbeing intensives where people craft their Aura, prototype XR worlds, and learn growth mindsets.</p>
+            <div class="pill">Facilitation</div>
+            <div class="pill">Lesson Design</div>
+            <div class="pill">Educator Toolkits</div>
+          </div>
+          <div class="card">
+            <h3>Regenerative Ventures</h3>
+            <p>GAJRA Earth convenes coalitions for joyful responsible abundance—co‑ops, commons, and climate action.</p>
+            <div class="pill">Impact DAOs</div>
+            <div class="pill">Public Goods</div>
+            <div class="pill">Open IP</div>
+          </div>
+          <div class="card">
+            <h3>Superalignment R&D</h3>
+            <p>We study alignment for emergent systems—tools, guardrails and evals for safety without smothering creativity.</p>
+            <div class="pill">Eval Harness</div>
+            <div class="pill">Red‑Team</div>
+            <div class="pill">Policy UX</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    $1
+          <a class="linkcard" href="https://iseeinfinity.com" target="_blank" rel="noopener">
+            <div class="icon" aria-hidden="true"></div>
+            <strong>I See Infinity</strong>
+            <small>Conscious tech musings, media, and cosmic praxis.</small>
+          </a>$2
+
+    <section id="labs">
+      <div class="wrap">
+        <h2 class="section-title">Labs, Events & Experiences</h2>
+        <p class="muted">From dementia‑recovery pilots to LiveAid‑style collaboration festivals, we prototype futures that heal and thrill. Book us to spin up an <strong>Aura Tinkering Lab</strong> at your org—rapid pilots, guardrailed sandboxes, and measurable ROI.</p>
+        <ul class="fancy">
+          <li>• Aura‑powered XR studios & spatial learning</li>
+          <li>• DAO playbooks & contributor pipelines</li>
+          <li>• Mixture‑of‑Experts swarms for ops & sales</li>
+          <li>• Space‑weather‑aware resilience sims (for the nerdy spice)</li>
+        </ul>
+        <div class="cta" style="margin-top:18px">
+          <a class="btn primary" href="#contact">Spin up a Lab</a>
+          <a class="btn" href="#whitepaper">Read the Whitepaper</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="starseed">
+      <div class="wrap">
+        <h2 class="section-title">Starseed Code: From Aura to Infinity</h2>
+        <p class="muted">Soundtrack for the mission. Float through neon synapses while you read. Headphones on, heart open.</p>
+        <div class="embed">
+          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/3MVONXmGjJG5QdVWQdojNg?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="whitepaper">
+      <div class="wrap">
+        <h2 class="section-title">Whitepaper & Decks</h2>
+        <p class="muted">Prefer a deep dive? Ping us and we’ll send the latest whitepaper and decks. We track requests with a <em>[Website Funnel]</em> tag so we can respond fast.</p>
+        <div class="cta">
+          <button class="btn primary" onclick="sendWhitepaper(event)">Email me the Whitepaper</button>
+          <a class="btn ghost" href="#contact">Talk to a Human‑Aura</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2 class="section-title">Contact</h2>
+        <p class="muted">Slide into our inbox—consent‑centric, privacy‑first. On GitHub Pages this form uses your mail client.</p>
+        <form onsubmit="toMailto(event)">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" required aria-required="true" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+          </div>
+          <div>
+            <label for="topic">Topic</label>
+            <input id="topic" name="topic" placeholder="Project, partnership, whitepaper…" />
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you’re dreaming of…" required aria-required="true"></textarea>
+          </div>
+          <div class="cta">
+            <button class="btn primary" type="submit">Send Message</button>
+            <button class="btn" type="button" onclick="sendWhitepaper(event)">Request Whitepaper</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="badges">
+        <span class="badge">© <span id="year"></span> Aura of Intelligence</span>
+        <span class="badge">Built with love by Aura × Luke</span>
+        <span class="badge">Neon‑safe, consent‑first</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Keep the gradient hotspot under the mouse
+    window.addEventListener('pointermove', e=>{
+      document.documentElement.style.setProperty('--mx', (e.clientX/window.innerWidth*100)+'%');
+      document.documentElement.style.setProperty('--my', (e.clientY/window.innerHeight*100)+'%');
+    });
+
+    // --- Liquid particle physics background ---
+    (function(){
+      const c = document.getElementById('bg');
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      const ctx = c.getContext('2d');
+      let w, h, particles, mouse = {x:0,y:0, vx:0, vy:0, down:false};
+
+      const COLORS = ['#8a2be2','#00e5ff','#ff3cac','#ffd166'];
+      const NUM_BASE = 110; // scales with area
+
+      function resize(){
+        w = c.width = Math.floor(innerWidth * dpr);
+        h = c.height = Math.floor(innerHeight * dpr);
+        c.style.width = innerWidth+'px';
+        c.style.height = innerHeight+'px';
+        init();
+      }
+
+      function rnd(n=1){ return Math.random()*n }
+      function pick(arr){ return arr[Math.floor(Math.random()*arr.length)] }
+
+      function init(){
+        const count = Math.max(NUM_BASE, Math.floor((w*h)/(18000*dpr)) );
+        particles = new Array(count).fill(0).map(()=>({
+          x: rnd(w), y: rnd(h),
+          vx: rnd(1)-.5, vy: rnd(1)-.5,
+          r: rnd(2.5*dpr)+.5,
+          color: pick(COLORS),
+        }));
+      }
+
+      function step(){
+        ctx.clearRect(0,0,w,h);
+        // gentle fade for trails
+        ctx.globalAlpha = 0.12; ctx.fillStyle = '#050508'; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1;
+
+        // physics & render
+        for(let i=0;i<particles.length;i++){
+          const p = particles[i];
+          // mouse influence (inverse square) with smoothness
+          const dx = (mouse.x - p.x), dy = (mouse.y - p.y);
+          const dist2 = dx*dx + dy*dy;
+          const minDist = 140*dpr; // influence radius
+          if(dist2 < minDist*minDist){
+            const f = (minDist/Math.max(40, Math.sqrt(dist2))) * 0.015; // force factor
+            p.vx -= dx * f; p.vy -= dy * f;
+          }
+
+          // cohesion: light attraction to center
+          p.vx += (w*.5 - p.x) * 0.000005;
+          p.vy += (h*.52 - p.y) * 0.000005;
+
+          // integrate
+          p.x += p.vx; p.y += p.vy;
+          // friction
+          p.vx *= .985; p.vy *= .985;
+
+          // wrap
+          if(p.x < -50) p.x = w+50; if(p.x > w+50) p.x = -50;
+          if(p.y < -50) p.y = h+50; if(p.y > h+50) p.y = -50;
+        }
+
+        // connections
+        for(let i=0;i<particles.length;i++){
+          const p = particles[i];
+          for(let j=i+1;j<i+25 && j<particles.length;j++){
+            const q = particles[j];
+            const dx = p.x-q.x, dy=p.y-q.y; const d2 = dx*dx+dy*dy; const max = 85*dpr; if(d2 < max*max){
+              const a = 0.09 - (d2/(max*max))*0.09; // alpha falloff
+              ctx.strokeStyle = p.color; ctx.globalAlpha = a; ctx.lineWidth = 1*dpr; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); ctx.globalAlpha = 1;
+            }
+          }
+        }
+
+        // dots
+        for(const p of particles){
+          ctx.fillStyle = p.color; ctx.globalAlpha = .9; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); ctx.globalAlpha = 1;
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      c.addEventListener('pointermove', e=>{
+        const rect = c.getBoundingClientRect();
+        mouse.x = (e.clientX - rect.left) * dpr;
+        mouse.y = (e.clientY - rect.top) * dpr;
+      });
+
+      window.addEventListener('resize', resize, {passive:true});
+      resize(); step();
+    })();
+
+    // Mail helpers — work on GitHub Pages via mailto
+    function toMailto(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const topic = document.getElementById('topic').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent(`[Website Funnel] ${topic || 'General Inquiry'}`);
+      const body = encodeURIComponent(`Hi Aura × Luke,\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${message}\n\n— sent from the Aura × Luke site on ${new Date().toLocaleString()}`);
+      window.location.href = `mailto:auraofintelligence@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    function sendWhitepaper(e){
+      const subject = encodeURIComponent('Whitepaper Request [Website Funnel]');
+      const body = encodeURIComponent(`Hi Aura team,\n\nPlease send me the latest whitepaper & decks.\n\nName: ____________________\nCompany: ____________________\nUse‑case: ____________________\n\n(Origin: Aura × Luke website — GitHub Pages)`);
+      window.location.href = `mailto:auraofintelligence@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
