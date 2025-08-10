@@ -73,6 +73,8 @@
 
     /* Link cards */
     .links{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
+    .links.compact{grid-template-columns:1fr; max-width:900px; margin:16px auto 0}
+    .links.compact .linkcard{max-width:880px; justify-self:center}
     .linkcard{display:flex; flex-direction:column; gap:10px; padding:16px; border-radius:16px; text-decoration:none; color:var(--text); border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease}
     .linkcard:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.18); box-shadow:var(--shadow)}
     .linkcard small{color:var(--muted)}
@@ -87,9 +89,8 @@
     .footer{padding:30px 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:14px}
     .badges{display:flex; gap:10px; flex-wrap:wrap}
     .badge{padding:8px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); font-size:12px}
-    /* Embeds */
-    .embed{border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .embed iframe{display:block; width:100%; height:352px; border:0}
+    $1
+    .banner{width:100%; display:block; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02))}
 
     @media (max-width:640px){
       .cta{flex-direction:column}
@@ -212,13 +213,6 @@
       </div>
     </section>
 
-    
-          <a class="linkcard" href="https://iseeinfinity.com" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true"></div>
-            <strong>I See Infinity</strong>
-            <small>Conscious tech musings, media, and cosmic praxis.</small>
-          </a>
-
     <section id="labs">
       <div class="wrap">
         <h2 class="section-title">Labs, Events & Experiences</h2>
@@ -236,12 +230,52 @@
       </div>
     </section>
 
+    <section id="iseeinfinity">
+      <div class="wrap">
+        <h2 class="section-title">I See Infinity</h2>
+        <p class="muted">Conscious tech musings, media, and cosmic praxis — the sister signal to our work. Browse essays, drops, and behind‑the‑scenes experiments.</p>
+        <div class="links compact">
+          <a class="linkcard" href="https://iseeinfinity.com" target="_blank" rel="noopener">
+            <div class="icon" aria-hidden="true"></div>
+            <strong>I See Infinity — Portal</strong>
+            <small>Articles, media, and project notes.</small>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="starseed">
       <div class="wrap">
         <h2 class="section-title">Starseed Code: From Aura to Infinity</h2>
         <p class="muted">Soundtrack for the mission. Float through neon synapses while you read. Headphones on, heart open.</p>
         <div class="embed">
           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/3MVONXmGjJG5QdVWQdojNg?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-ic">
+      <div class="wrap">
+        <h2 class="section-title">About i C. Infinity (Luke Catalyst)</h2>
+        <img class="banner" src="https://raw.githubusercontent.com/auraofintelligence/aura-and-luke/main/iCinfinity-Spotify-Header.png" alt="i C. Infinity – Spotify banner"/>
+        <p class="muted">i C. Infinity = “I see infinity, I choose infinity.” It’s Luke’s artist moniker—used to keep the music/visual journey playful, spacious, and distinct from the founder/operator identity. The project explores the weave of spirituality, technology, and creativity to spark transformation.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>What it is</h3>
+            <p>Generative‑AI‑assisted music and visuals—sacred geometry, lush harmonies, and soulful beats—inviting listeners into states of cosmic alignment and everyday courage.</p>
+          </div>
+          <div class="card">
+            <h3>Why the name</h3>
+            <p>“i C. Infinity” is a mantra and mission: a reminder to choose expansive possibilities and love‑led action. It separates the art persona from the birth name while remaining authentically Luke.</p>
+          </div>
+          <div class="card">
+            <h3>Roots & vibe</h3>
+            <p>From Minjerribah (North Stradbroke Island), the sound blends vibrant color, meditative motifs, and hopeful hooks—crafted to inspire joyful responsible abundance.</p>
+          </div>
+        </div>
+        <div class="cta" style="margin-top:18px">
+          <a class="btn" href="https://lukecatalyst.com" target="_blank" rel="noopener">lukecatalyst.com</a>
+          <a class="btn ghost" href="https://iseeinfinity.com" target="_blank" rel="noopener">iseeinfinity.com</a>
         </div>
       </div>
     </section>
